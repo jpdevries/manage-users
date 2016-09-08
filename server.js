@@ -703,7 +703,7 @@ function quicklyUpdateUser(fields) {
     // instantiate a new client
     // the client will read connection information from
     // the same environment varaibles used by postgres cli tools
-    var client = new pg.Client(),
+    var client = new pg.Client(process.env.DATABASE_URL),
     user_id = fields.id,
     username = fields.username,
     givenname = fields.givenName || fields['given-name'], // #janky
