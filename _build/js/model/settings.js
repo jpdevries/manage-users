@@ -9,7 +9,7 @@ var USER_GROUPS = '/user/groups/';
 var API = '/api';
 
 module.exports = {
-  paginateUsers:12,
+  paginateUsers:20,
   endpoints:{
     ADD_USER:'/user/add/',
 

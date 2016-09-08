@@ -520,7 +520,7 @@ function getUserRowsAndPrepareData(where = '',userGroupsWhere = '') {
 app.get('/', function(req, res){
   getUserRowsAndPrepareData().then(function(data){
     res.render('index.twig', Object.assign({},data,{
-      paginateUsers:12,
+      paginateUsers:paginateUsers,
       endpoints:endpoints,
       production:process.env.NODE_ENV == 'production'
     }));
@@ -540,7 +540,7 @@ app.post('/', function(req, res){
     console.log(fields,query,where,filteredGroup);
     getUserRowsAndPrepareData(where).then(function(data){
       res.render('index.twig', Object.assign({},data,{
-        paginateUsers:12,
+        paginateUsers:paginateUsers,
         endpoints:endpoints,
         query:query,
         filteredGroup:filteredGroup,

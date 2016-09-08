@@ -181,7 +181,7 @@ var SettingsGridSection = React.createClass({
       });
     }
 
-    var paginationAmount = 12,
+    var paginationAmount = settings.paginationAmount,
     bulkActionsFieldset = users.length >= minimumUsersBulkAction ? <SettingsGridSectionBulkActionsFieldset bulkToggledUsers={this.state.bulkToggledUsers} emails={emails} slackChannel={props.userGroup.slackChannel} slackHandles={slackHandles} /> : false,
     viewAll = (this.props.expanded || this.props.viewProps.pageType == 'detail') ? false : (users.length > paginationAmount) ? (<p><a onClick={(event) => {
       event.preventDefault();

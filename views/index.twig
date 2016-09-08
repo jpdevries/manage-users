@@ -123,7 +123,7 @@
                 <tbody>
                   {% set shownUsers = 0 %}
                   {% for user in users %}
-                  {% if userGroup.id in user.user_groups and shownUsers >= 0 and shownUsers < paginateUsers|default(12) %}
+                  {% if userGroup.id in user.user_groups and shownUsers >= 0 and shownUsers < paginateUsers|default(20) %}
                   {% if filteredGroup is not defined %}{% set shownUsers = shownUsers + 1 %}{% endif %}
                   <tr tabindex="0" class="user-row" data-user-id="{{ user.id }}" data-slack="{{ user.slack }}" data-email="{{ user.email }}" data-user-groups="{{ user.user_groups|join(',') }}">
                     <td class="username">{{ user.username }}</td>
@@ -178,7 +178,7 @@
               {% endif %}
             </div>
             <footer>
-              {% if pageType != 'detail' and usersInGroup > paginateUsers|default(12) %}<p><a href="{{ endpoints.GROUPS|default('/groups/') }}{{ userGroup.id }}#fold">View all {{ userGroup.name }} Users</a></p>{% endif %}
+              {% if pageType != 'detail' and usersInGroup > paginateUsers|default(20) %}<p><a href="{{ endpoints.GROUPS|default('/groups/') }}{{ userGroup.id }}#fold">View all {{ userGroup.name }} Users</a></p>{% endif %}
             </footer>
           </div>
         </section>
