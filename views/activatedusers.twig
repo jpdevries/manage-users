@@ -1,0 +1,37 @@
+{% include 'header.twig' with {
+  'base':'/',
+  'title':'Activate Users'
+} %}
+<body class="micro-page">
+  <div id="fold">
+    <div class="horizontally-padded">
+      <main class="bright padded">
+        <h1>{{ activated|default('Activated') }} Users</h1>
+        <table>
+          <caption style="text-align:left">
+            <p>
+              The following users have been succesfully&nbsp;{{ activated|default('activated')|lower }}.
+            </p>
+          </caption>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>username</th>
+              <th>fullname</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.user_id }}</td>
+                <td><a href="/update/user/{{ user.user_id }}">{{ user.username }}</a></td>
+                <td>{{ user.givenname }} {{ user.familyname }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </main>
+      {% include 'returnto.twig' %}
+    </div>
+  </div>
+</body>

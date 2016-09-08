@@ -1,0 +1,21 @@
+{% include 'header.twig' with {
+  'base':'/',
+  'title':'Create User'
+} %}
+<body class="micro-page">
+  <div id="fold">
+    <div id="manage-user-form__header">
+      <header>
+        <h1>Create User</h1>
+        <div class="create-user-module">
+          <form action="{{ endpoints.ADD_USER|default('/add/user/') }}" method="post" class="create-setting-form">
+              {{ react }}
+          </form>
+        </div>
+      </header>
+    </div>
+    <div class="horizontally-padded">
+      {% include 'returnto.twig' %}
+    </div>
+  </div>
+</body>
