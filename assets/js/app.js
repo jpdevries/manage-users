@@ -1090,7 +1090,7 @@
 	var API = '/api';
 
 	module.exports = {
-	  paginateUsers: 20,
+	  paginateUsers: 15,
 	  endpoints: {
 	    ADD_USER: '/user/add/',
 
@@ -3019,7 +3019,7 @@
 	      });
 	    }
 
-	    var paginationAmount = settings.paginationAmount,
+	    var paginationAmount = settings.paginateUsers,
 	        bulkActionsFieldset = users.length >= minimumUsersBulkAction ? React.createElement(SettingsGridSectionBulkActionsFieldset, { bulkToggledUsers: this.state.bulkToggledUsers, emails: emails, slackChannel: props.userGroup.slackChannel, slackHandles: slackHandles }) : false,
 	        viewAll = this.props.expanded || this.props.viewProps.pageType == 'detail' ? false : users.length > paginationAmount ? React.createElement(
 	      'p',
