@@ -1,7 +1,8 @@
 Manage Users Lab
 ========
 
-A progressively enhanced proof of concept for a Manage Users CMP&nbsp;page.
+A progressively enhanced proof of concept for a Manage Users CMP&nbsp;page.  
+[Take this concept for a test drive at our Heroku dino](https://matboard-manage-users.herokuapp.com).
 
 ![](http://j4p.us/0Q160P2j0E1J/Screen%20Shot%202016-07-25%20at%203.08.32%20AM.png)
 
@@ -85,6 +86,11 @@ PORT=8081 npm run serve #visit http://localhost:8081 in your browser
 An HTML layer is initially served by the Node server to keep the application progressive, optimal, stable, and accessible under any condition. It can truly weather the storms of&nbsp;web.
 
 [Play the DOM Overview section of the screencast](https://vimeo.com/176084699).
+
+## Keyboard Support
+Not a single action relies on the mouse. As user rows recieve focus they display a contextual update form below. This allows the entire interface to be tabbed through using a&nbsp;keyboard.
+
+![](http://j4p.us/0I0M0u2F1U3k/manageusers_keyboard.gif)
 
 ## Synchronous Endpoints
 Being progressive in nature, JavaScript is not required to create, update, or remove users. "Old school" synchronous HTML `<form>`s are used along with synchronous endpoints in the Node server to accept and process user input on a new page. As we progressively enhance the front end, we also enhance the Node server to support asynchronous endpoints that serve JSON over XHR&nbsp;requests.
