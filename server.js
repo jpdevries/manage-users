@@ -736,7 +736,7 @@ function quicklyUpdateUser(fields) {
         RETURNING *
       ), "modx_user_attributes" AS (
         UPDATE "modx_user_attributes"
-          SET givenname, familyname, ='${givenname} ${familyname}', email = '${email}' WHERE "internalkey" = ${user_id}
+          SET givenname ='${givenname}', familyname = '${familyname}', email = '${email}' WHERE "internalkey" = ${user_id}
           RETURNING *
       ) ${updateUserGroups}
       SELECT * FROM "update_user";`;
