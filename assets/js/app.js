@@ -2353,22 +2353,31 @@
 	        'div',
 	        null,
 	        React.createElement(
+	          'p',
+	          null,
+	          'Search for any User. We’ll try and find them.'
+	        ),
+	        React.createElement(
 	          'h3',
-	          { id: 'search-users' },
-	          'Search Users'
+	          { id: 'search' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'search-users' },
+	            'Search Users'
+	          )
 	        ),
 	        React.createElement(
 	          'form',
 	          { action: '#', id: 'search', className: 'search-settings' },
 	          React.createElement(
-	            'label',
-	            { 'for': 'search-users' },
+	            'div',
+	            { className: 'search-users-wrapper' },
 	            React.createElement(
 	              'span',
 	              { className: 'accessibly-hidden' },
 	              'Search: '
 	            ),
-	            React.createElement('input', { name: 'search-users', id: 'search-users', type: 'text', placeholder: 'Search for any User. We\'ll try and find them.', onChange: function onChange(event) {
+	            React.createElement('input', { name: 'search-users', id: 'search-users', type: 'text', placeholder: 'chucknorris', onChange: function onChange(event) {
 	                try {
 	                  _this3.props.handleFilter(event.target.value);
 	                } catch (e) {}
@@ -2389,7 +2398,7 @@
 	        React.createElement(
 	          'p',
 	          null,
-	          'Below you will users who have logged in recently per user group.'
+	          'Below you will find users who have logged in recently per user group.'
 	        )
 	      ),
 	      React.createElement('hr', null)

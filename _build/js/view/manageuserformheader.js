@@ -166,23 +166,24 @@ var ManageUserFormHeader = React.createClass({
         </div>
         <hr />
         <div>
-          <h3 id="search-users">Search Users</h3>
+          <p>Search for any User. We&#8217;ll try and find them.</p>
+          <h3 id="search"><label htmlFor="search-users">Search Users</label></h3>
           <form action="#" id="search" className="search-settings">
-            <label for="search-users">
+            <div className="search-users-wrapper">
               <span className="accessibly-hidden">Search: </span>
-              <input name="search-users" id="search-users" type="text" placeholder="Search for any User. We'll try and find them." onChange={(event) => {
+              <input name="search-users" id="search-users" type="text" placeholder="chucknorris" onChange={(event) => {
                 try {
                   this.props.handleFilter(event.target.value);
                 } catch (e) {}
               }} />
-            </label>
+            </div>
             <div>
               <button type="submit">Search</button>
             </div>
             {filterByLabel}
             {filterBy}
           </form>
-          <p>Below you will users who have logged in recently per user group.</p>
+          <p>Below you will find users who have logged in recently per user&nbsp;group.</p>
         </div>
         <hr />
       </header>

@@ -70,9 +70,10 @@
           </div>
           <hr>
           <div>
-            <h3 id="search-users">Search Users</h3>
+            <p>Search for any User. We&#8217;ll try and find them.</p>
+            <h3 id="search"><label for="search-users">Search Users</label></h3>
             <form action="/#fold" method="post" id="search" class="search-settings">
-              <label for="search" ><span a11y-hidden>Search: </span><input name="search" id="search-users" value="{{ query }}" type="text" placeholder="Search for any User. We'll try and find them."></label>
+              <div class="search-users-wrapper"><input name="search" id="search-users" value="{{ query }}" type="text" placeholder="chucknorris"></div>
               <div>
                 <button type="submit">Search</button>
               </div>
@@ -86,7 +87,7 @@
               </select>
               {% endif %}
             </form>
-            <p>Below you will users who have logged in recently per user group.</p>
+            <p>Below you will find users who have logged in recently per user&nbsp;group.</p>
           </div>
           <hr>
         </header>

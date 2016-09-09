@@ -459,18 +459,15 @@ form.search-settings, form.search-users {
   //max-width:36rem;
 
   font-size:1.1em;
-  > label {
+  > label, > .search-users-wrapper {
     flex-grow:1;
     max-width:50vw;
     //padding-left:1em;
     margin-right:.5em;
   }
-  > label, > button {
-
-  }
   > label[for="filter-by"], #filter-by {
     text-align:right;
-    margin-top:1.6rem;
+    margin-top:.8rem;
   }
   > div {
     //padding-top:1em;
@@ -496,7 +493,7 @@ input[name*="search"] {
   line-height:1.6rem;
 }
 
-#search-users {
+#search, #search-users {
   margin-bottom:0.2em;
 }
 
