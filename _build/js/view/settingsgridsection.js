@@ -254,18 +254,18 @@ var SettingsTableRow = function(props) {
   }} /></td>;
 
   return (
-    <tr tabIndex="0" onFocus={(event) => {
-        //console.log(event.nativeEvent);
-          try {
-            props.handleFocus();
-          } catch(e) {}
-    }} onBlur={(event) => {
-          try {
-            props.handleBlur();
-          } catch(e) {}
-    }}>
+    <tr>
       {bulkActionsTd}
-      <td className="username">{user.username}</td>
+      <td className="username" tabIndex="0" onFocus={(event) => {
+          //console.log(event.nativeEvent);
+            try {
+              props.handleFocus();
+            } catch(e) {}
+      }} onBlur={(event) => {
+            try {
+              props.handleBlur();
+            } catch(e) {}
+      }}>{user.username}</td>
       <td className="shy balanced checkbox">
         <label>
           <span className="accessibly-hidden">Active: </span>

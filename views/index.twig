@@ -126,8 +126,8 @@
                   {% for user in users %}
                   {% if userGroup.id in user.user_groups and shownUsers >= 0 and shownUsers < paginateUsers|default(15) %}
                   {% if filteredGroup is not defined %}{% set shownUsers = shownUsers + 1 %}{% endif %}
-                  <tr tabindex="0" class="user-row" data-user-id="{{ user.id }}" data-slack="{{ user.slack }}" data-email="{{ user.email }}" data-user-groups="{{ user.user_groups|join(',') }}">
-                    <td class="username">{{ user.username }}</td>
+                  <tr class="user-row" data-user-id="{{ user.id }}" data-slack="{{ user.slack }}" data-email="{{ user.email }}" data-user-groups="{{ user.user_groups|join(',') }}">
+                    <td class="username" tabindex="0">{{ user.username }}</td>
                     <!--td><label><span a11y-hidden>Active: </span><input {% if user.active == '1' %}checked {% endif %} type="checkbox"></label></td-->
                   </tr>
                   <tr class="contextual-setting" js-hidden>

@@ -3142,20 +3142,20 @@
 
 	  return React.createElement(
 	    'tr',
-	    { tabIndex: '0', onFocus: function onFocus(event) {
-	        //console.log(event.nativeEvent);
-	        try {
-	          props.handleFocus();
-	        } catch (e) {}
-	      }, onBlur: function onBlur(event) {
-	        try {
-	          props.handleBlur();
-	        } catch (e) {}
-	      } },
+	    null,
 	    bulkActionsTd,
 	    React.createElement(
 	      'td',
-	      { className: 'username' },
+	      { className: 'username', tabIndex: '0', onFocus: function onFocus(event) {
+	          //console.log(event.nativeEvent);
+	          try {
+	            props.handleFocus();
+	          } catch (e) {}
+	        }, onBlur: function onBlur(event) {
+	          try {
+	            props.handleBlur();
+	          } catch (e) {}
+	        } },
 	      user.username
 	    ),
 	    React.createElement(
