@@ -199,6 +199,7 @@ body {
     display:flex;
     > * {
       flex-grow:1;
+      margin-left:0;
       &:last-child {
         margin-right:0;
       }
@@ -206,7 +207,7 @@ body {
   }
 
   a,button {
-    margin-right:.5em;
+    margin-right:.5rem;
     @include media($gtMobile) {
       margin-right:1rem;
     }
@@ -236,7 +237,10 @@ body {
 header, aside, .padded {
   > h1 {
     &:first-of-type {
-      margin-top:0;
+      margin-top:0.5rem;
+      @include media($gtMobile) {
+        margin-top:0;
+      }
     }
   }
 }
@@ -292,6 +296,7 @@ h1 {
 
 %settings-table {
     //background:rgb(242,242,242);
+    margin-bottom:1em;
     label {
       //display:block;
     }
@@ -300,6 +305,7 @@ h1 {
     }
     thead {
       font-weight:bold;
+      font-size:.9em;
         //background:rgb(224,224,224);
         > tr {
             > th {
@@ -471,8 +477,12 @@ table { // .settings-table
       margin-right:auto;
     }
   }
+  footer {
+    padding-top:1em;
+  }
   footer p {
     text-align:center;
+    margin-bottom:0;
   }
 }
 

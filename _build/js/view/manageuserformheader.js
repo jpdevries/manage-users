@@ -165,7 +165,7 @@ var ManageUserFormHeader = React.createClass({
           <CreateSettingsForm {...props} />
         </div>
         <hr />
-        <div>
+        <div role="search">
           <p>Search for any User. We&#8217;ll try and find them.</p>
           <h3 id="search"><label htmlFor="search-users">Search Users</label></h3>
           <form action="#" id="search" className="search-settings">
@@ -183,8 +183,8 @@ var ManageUserFormHeader = React.createClass({
             {filterByLabel}
             {filterBy}
           </form>
-          <p>Below you will find users who have logged in recently per user&nbsp;group.</p>
         </div>
+        <p>Below you will find users who have logged in recently per user&nbsp;group.</p>
         <hr />
       </header>
     );

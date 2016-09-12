@@ -2351,7 +2351,7 @@
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'div',
-	        null,
+	        { role: 'search' },
 	        React.createElement(
 	          'p',
 	          null,
@@ -2394,12 +2394,12 @@
 	          ),
 	          filterByLabel,
 	          filterBy
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Below you will find users who have logged in recently per user group.'
 	        )
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Below you will find users who have logged in recently per user group.'
 	      ),
 	      React.createElement('hr', null)
 	    );
@@ -2788,6 +2788,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var update = __webpack_require__(11);
@@ -2797,6 +2799,10 @@
 
 	var settings = __webpack_require__(7),
 	    endpoints = settings.endpoints;
+
+	function cssSafeName(name) {
+	  return name.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '').toLowerCase();
+	}
 
 	// can't use this until a future version of React
 	var SettingTableRowGroup = React.createClass({
@@ -3046,10 +3052,6 @@
 	    ) : false,
 	        paginatedUsers = this.props.expanded || this.props.viewProps.pageType == 'detail' ? users : users.slice(0, paginationAmount);
 
-	    function cssSafeName(name) {
-	      return name.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '').toLowerCase();
-	    }
-
 	    return paginatedUsers.length ? React.createElement(
 	      'section',
 	      { id: "user-group-" + props.userGroup.id },
@@ -3119,10 +3121,11 @@
 	});
 
 	var SettingsTableRow = function SettingsTableRow(props) {
-	  var user = props.user;
+	  var user = props.user,
+	      userGroup = props.userGroup;
 
 	  var bulkActionsTd;
-	  var bulkName = 'bulk-' + props.userGroup.id + '-' + user.username;
+	  var bulkName = 'bulk-' + userGroup.id + '-' + user.username;
 	  if (props.bulkActions) bulkActionsTd = React.createElement(
 	    'td',
 	    null,
@@ -3146,7 +3149,7 @@
 	    bulkActionsTd,
 	    React.createElement(
 	      'td',
-	      { className: 'username', tabIndex: '0', onFocus: function onFocus(event) {
+	      { className: 'username', tabIndex: '0', 'aria-haspopup': 'true', 'aria-owns': 'user_popup_' + cssSafeName(userGroup.title) + '_' + user.id, onFocus: function onFocus(event) {
 	          try {
 	            props.handleFocus();
 	          } catch (e) {}
@@ -3199,13 +3202,21 @@
 
 	    return React.createElement(
 	      'tr',
-	      props,
+	      _extends({}, props, { id: 'user_popup_' + cssSafeName(userGroup.title) + '_' + user.id, role: 'dialog', 'aria-labeledby': 'user_popup_label_' + user.id, 'aria-describedby': 'user_popup_' + user.id + '_desc' }),
 	      React.createElement(
 	        'td',
 	        { colSpan: props.colspan },
 	        React.createElement(
 	          'form',
 	          { action: this.state.formAction, method: this.state.formMethod, onChange: this.updateFormData },
+	          React.createElement(
+	            'h3',
+	            { hidden: true, id: 'user_popup_label_' + user.id },
+	            'Edit or Contact ',
+	            user.givenName,
+	            ' ',
+	            user.familyName
+	          ),
 	          React.createElement('input', { name: 'user_id', type: 'hidden', value: user.id }),
 	          React.createElement('input', { name: 'username', type: 'hidden', value: user.username }),
 	          React.createElement(
@@ -3325,7 +3336,7 @@
 	        ),
 	        React.createElement(
 	          'footer',
-	          { className: 'subtle oblique balanced' },
+	          { id: 'user_popup_' + user.id + '_desc', className: 'subtle oblique balanced' },
 	          React.createElement(
 	            'p',
 	            null,

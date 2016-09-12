@@ -6,6 +6,10 @@ var ReactFormData = require('react-form-data');
 var settings = require('./../model/settings'),
 endpoints = settings.endpoints;
 
+function cssSafeName(name) {
+  return name.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '').toLowerCase()
+}
+
 // can't use this until a future version of React
 var SettingTableRowGroup = React.createClass({
   getInitialState:function(){
@@ -189,10 +193,6 @@ var SettingsGridSection = React.createClass({
     }} href={`${ endpoints.GROUPS }${props.userGroup.id}#fold`}>View all {props.title} users</a></p>) : false,
     paginatedUsers = (this.props.expanded || this.props.viewProps.pageType == 'detail') ? users : users.slice(0, paginationAmount);
 
-    function cssSafeName(name) {
-      return name.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '').toLowerCase()
-    }
-
     return (paginatedUsers.length) ? (
       <section id={"user-group-" + props.userGroup.id}>
         <div>
@@ -242,10 +242,11 @@ var SettingsGridSection = React.createClass({
 });
 
 var SettingsTableRow = function(props) {
-  var user = props.user;
+  const user = props.user,
+  userGroup = props.userGroup;
 
   var bulkActionsTd;
-  var bulkName = 'bulk-' + props.userGroup.id + '-' + user.username;
+  var bulkName = 'bulk-' + userGroup.id + '-' + user.username;
   if(props.bulkActions) bulkActionsTd = <td><label htmlFor={bulkName} className="accessibly-hidden">Select {user.username}</label><input type="checkbox" name={bulkName} checked={props.bulkToggle} onChange={(event) => {
     event.stopPropagation();
     try {
@@ -256,7 +257,7 @@ var SettingsTableRow = function(props) {
   return (
     <tr>
       {bulkActionsTd}
-      <td className="username" tabIndex="0" onFocus={(event) => {
+      <td className="username" tabIndex="0" aria-haspopup="true" aria-owns={`user_popup_${cssSafeName(userGroup.title)}_${user.id}`} onFocus={(event) => {
             try {
               props.handleFocus();
             } catch(e) {}
@@ -295,9 +296,10 @@ var SettingsTableRowForm = React.createClass({
     //console.log(user);
 
     return (
-      <tr {...props}>
+      <tr {...props} id={`user_popup_${cssSafeName(userGroup.title)}_${user.id}`} role="dialog" aria-labeledby={`user_popup_label_${user.id}`} aria-describedby={`user_popup_${user.id}_desc`}>
         <td colSpan={props.colspan}>
             <form action={this.state.formAction} method={this.state.formMethod} onChange={this.updateFormData}>
+              <h3 hidden id={`user_popup_label_${user.id}`}>Edit or Contact {user.givenName} {user.familyName}</h3>
               <input name="user_id" type="hidden" value={user.id} />
               <input name="username" type="hidden" value={user.username} />
               <div className="friendly-labels">
@@ -359,7 +361,7 @@ var SettingsTableRowForm = React.createClass({
                 }}>Remove from Group</button>
               </div>
             </form>
-            <footer className="subtle oblique balanced">
+            <footer id={`user_popup_${user.id}_desc`} className="subtle oblique balanced">
               <p>{user.givenName} {user.familyName}’{user.familyName.slice(-1) == 's' ? '' : 's'} last login was Jan 23, 2016 4:52pm from Planet&nbsp;Earth</p>
             </footer>
         </td>
