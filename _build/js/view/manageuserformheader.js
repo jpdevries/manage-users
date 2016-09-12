@@ -146,7 +146,7 @@ var ManageUserFormHeader = React.createClass({
       <option key={userGroup.id} value={userGroup.id}>{userGroup.title}</option>
     ));
 
-    var filterByLabel = (props.viewProps.showFilterBy) ? <label htmlFor="filter-by">Filter <span className="accessibly-hidden">Users</span> by<span className="accessibly-hidden"> User Group</span>:</label> : false;
+    var filterByLabel = (props.viewProps.showFilterBy) ? <label htmlFor="filter-by">Filter <span className="accessibly-hidden">Users</span> by<span className="accessibly-hidden"> User Group</span>: </label> : false;
 
     var filterBy = (props.viewProps.showFilterBy) ? (
       <select name="filter-by" id="filter-by" value={props.filterBy} onChange={(event) => {

@@ -14,13 +14,22 @@ $borderColor:rgb(200,200,200);
 
 %bright-padded-module {
   background:$white;
-  padding:1rem;
-  margin-bottom:1em;
+  padding:.5rem;
+  margin-bottom:.5em;
   border:1px solid rgb(200,200,200);
+
+  @include media($gtMobile) {
+    margin-bottom:1em;
+    padding:1rem;
+  }
 }
 
 .accessibly-hidden {
   @extend %accessibly-hidden;
+}
+
+.button-bar {
+  margin:1em 0;
 }
 
 .shy.checkbox {
@@ -174,16 +183,33 @@ html {
 
 body {
   background:rgb(240,240,240);
-  padding-top:1rem;
   color:rgb(8,8,8);
+  padding-top:.5rem;
+  @include media($gtMobile) {
+    padding-top:1rem;
+  }
 }
 
 .top-bar {
   //padding-left:1rem;
   //padding-right:1rem;
   margin-bottom:1rem;
+
+  @include media($mobile) {
+    display:flex;
+    > * {
+      flex-grow:1;
+      &:last-child {
+        margin-right:0;
+      }
+    }
+  }
+
   a,button {
-    margin-right:1rem;
+    margin-right:.5em;
+    @include media($gtMobile) {
+      margin-right:1rem;
+    }
   }
 }
 
@@ -461,9 +487,12 @@ form.search-settings, form.search-users {
   font-size:1.1em;
   > label, > .search-users-wrapper {
     flex-grow:1;
-    max-width:50vw;
-    //padding-left:1em;
-    margin-right:.5em;
+
+
+    @include media($gtMobile) {
+      max-width:50vw;
+      margin-right:.5em;
+    }
   }
   > label[for="filter-by"], #filter-by {
     text-align:right;
@@ -475,7 +504,9 @@ form.search-settings, form.search-users {
   button {
     @include media($mobile) {
       display:block;
-      margin-bottom:0.5em;
+      width:100%;
+      margin:0 0 1em 0;
+      line-height:1.5;
     }
   }
   input,button {
@@ -490,11 +521,17 @@ form.search-settings, form.search-users {
 input[name*="search"] {
   @extend %very-greedy;
   //margin-bottom:1em;
-  line-height:1.6rem;
+  line-height:1.5;
+  @include media($gtMobile) {
+    line-height:1.6rem;
+  }
 }
 
 #search, #search-users {
-  margin-bottom:0.2em;
+  margin-bottom:1em;
+  @include media($gtMobile) {
+    margin-bottom:0.2em;
+  }
 }
 
 label[for="filter-by"] {

@@ -120,7 +120,7 @@ export default class QuickCreateFieldset extends React.Component {
               <label htmlFor="user-sudo">&emsp;Sudo</label>
               </div>
             </div>
-            <div>
+            <div className="button-bar">
               <div className="balanced">
                 <button className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
               </div>

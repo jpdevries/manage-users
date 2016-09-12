@@ -257,7 +257,6 @@ var SettingsTableRow = function(props) {
     <tr>
       {bulkActionsTd}
       <td className="username" tabIndex="0" onFocus={(event) => {
-          //console.log(event.nativeEvent);
             try {
               props.handleFocus();
             } catch(e) {}
@@ -265,6 +264,8 @@ var SettingsTableRow = function(props) {
             try {
               props.handleBlur();
             } catch(e) {}
+      }} onClick={(event) => {
+        if(document.activeElement !== event.target) event.target.focus(); // needed for mobile (iOS)
       }}>{user.username}</td>
       <td className="shy balanced checkbox">
         <label>

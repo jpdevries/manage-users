@@ -2317,7 +2317,7 @@
 	        { className: 'accessibly-hidden' },
 	        ' User Group'
 	      ),
-	      ':'
+	      ': '
 	    ) : false;
 
 	    var filterBy = props.viewProps.showFilterBy ? React.createElement(
@@ -2714,7 +2714,7 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          null,
+	          { className: 'button-bar' },
 	          React.createElement(
 	            'div',
 	            { className: 'balanced' },
@@ -3147,7 +3147,6 @@
 	    React.createElement(
 	      'td',
 	      { className: 'username', tabIndex: '0', onFocus: function onFocus(event) {
-	          //console.log(event.nativeEvent);
 	          try {
 	            props.handleFocus();
 	          } catch (e) {}
@@ -3155,6 +3154,8 @@
 	          try {
 	            props.handleBlur();
 	          } catch (e) {}
+	        }, onClick: function onClick(event) {
+	          if (document.activeElement !== event.target) event.target.focus(); // needed for mobile (iOS)
 	        } },
 	      user.username
 	    ),
