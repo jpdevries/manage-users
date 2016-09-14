@@ -47,6 +47,12 @@ var ManageUsersForm = React.createClass({
         </div>
         <div id="fold" className="settings-grid">
           {sections}
+          <aside className="balanced">
+            <h2 id="modxambassadors" className="accessibly-hidden">Manage User Groups</h2>
+            <div>
+              <p><i>You’ve been managing users. Perhaps it’s time to <a href="#">manage user&nbsp;groups</a>?</i></p>
+            </div>
+          </aside>
         </div>
       </div>
     );

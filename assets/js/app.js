@@ -2102,7 +2102,35 @@
 	      React.createElement(
 	        'div',
 	        { id: 'fold', className: 'settings-grid' },
-	        sections
+	        sections,
+	        React.createElement(
+	          'aside',
+	          { className: 'balanced' },
+	          React.createElement(
+	            'h2',
+	            { id: 'modxambassadors', className: 'accessibly-hidden' },
+	            'Manage User Groups'
+	          ),
+	          React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	              'p',
+	              null,
+	              React.createElement(
+	                'i',
+	                null,
+	                'You’ve been managing users. Perhaps it’s time to ',
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'manage user groups'
+	                ),
+	                '?'
+	              )
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -2166,15 +2194,11 @@
 	      ' User'
 	    );
 
-	    var createUserBtn = this.state.quickCreateOpen ? React.createElement(
-	      'button',
-	      null,
-	      'More Options'
-	    ) : React.createElement(
+	    var createUserBtn = this.state.quickCreateOpen ? false : React.createElement(
 	      'a',
 	      { className: 'button', href: endpoints.ADD_USER },
 	      'Create User'
-	    );
+	    ); // <button>More Options</button>
 
 	    var quickCreate = this.state.quickCreateOpen ? React.createElement(QuickCreateFieldset, _extends({}, props, { handleDeleteUser: this.handleDeleteUser })) : false;
 
@@ -2529,8 +2553,20 @@
 	  }
 
 	  _createClass(QuickCreateFieldset, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log('componentDidMount', this.refs.quickCreateFieldsetLabel);
+	      if (!this.props.quickCreate.updating && document.activeElement !== this.refs.quickCreateFieldsetLabel) {
+	        try {
+	          this.refs.quickCreateFieldsetLabel.focus();
+	        } catch (e) {}
+	      }
+	      //autoFocus={!props.quickCreate.updating}
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
 
 	      var props = this.props;
 	      var userGroups = props.userGroups;
@@ -2561,7 +2597,7 @@
 	                  } else {
 	                    store.dispatch(actions.quickCreateRoleRemove(group.id, role.id));
 	                  }
-	                }, checked: roleChecked, name: 'user-group-' + group.id + '-roles[]', value: group.id + '|' + role.id }),
+	                }, checked: roleChecked, id: 'user-group-' + group.id + '-roles[]', name: 'user-group-' + group.id + '-roles[]', value: group.id + '|' + role.id }),
 	              ' ',
 	              role.name
 	            ));
@@ -2615,7 +2651,9 @@
 	          null,
 	          React.createElement(
 	            'legend',
-	            null,
+	            { tabIndex: '0', role: 'button', 'aria-label': 'Here you can quickly create a user and manage their permissions.', ref: 'quickCreateFieldsetLabel', onClick: function onClick(event) {
+	                _this2.refs.quickCreateUsernameLabel.focus();
+	              } },
 	            'Quick ',
 	            props.quickCreate.updating ? 'Update' : 'Create',
 	            ' User'
@@ -2629,14 +2667,14 @@
 	              { className: 'field-username' },
 	              React.createElement(
 	                'label',
-	                { htmlFor: 'username', id: 'username-label' },
+	                { ref: 'quickCreateUsernameLabel', htmlFor: 'username', id: 'username-label' },
 	                'Username'
 	              ),
 	              React.createElement('input', { type: 'text', autoComplete: 'off', value: props.quickCreate.username, disabled: props.quickCreate.updating, onChange: function onChange(event) {
 	                  store.dispatch(actions.updateQuickCreate({
 	                    username: event.target.value
 	                  }));
-	                }, ref: 'quickCreateUsername', autoFocus: !props.quickCreate.updating, 'aria-describedby': 'username-label', name: 'username', id: 'username', className: 'nickname', 'aria-required': 'true', 'aria-invalid': 'false', required: true })
+	                }, ref: 'quickCreateUsername', 'aria-describedby': 'username-label', name: 'username', id: 'username', className: 'nickname', 'aria-invalid': 'false', required: true })
 	            ),
 	            React.createElement(
 	              'div',
@@ -2674,7 +2712,7 @@
 	                { htmlFor: 'email' },
 	                'Email'
 	              ),
-	              React.createElement('input', { type: 'email', value: props.quickCreate.email, autoFocus: props.quickCreate.updating, onChange: function onChange(event) {
+	              React.createElement('input', { type: 'email', value: props.quickCreate.email, onChange: function onChange(event) {
 	                  store.dispatch(actions.updateQuickCreate({
 	                    email: event.target.value
 	                  }));
@@ -2985,7 +3023,7 @@
 
 	    return React.createElement(
 	      'table',
-	      { className: 'settings-table' },
+	      { className: 'settings-table' + (props.bulkActions ? ' bulk-actions' : ' no-bulk-actions') },
 	      React.createElement(
 	        'thead',
 	        null,
@@ -3211,7 +3249,9 @@
 	        { className: 'button', href: '#bulk-' + userGroup.id + '-' + user.nextUser.username, 'aria-label': 'Escape to Next User ' + user.nextUser.username, onClick: function onClick(event) {
 	            console.log('bulk-' + userGroup.id + '-' + user.username);
 	            props.handleNextBtnClicked();
-	            document.getElementById('bulk-' + userGroup.id + '-' + user.nextUser.username).focus();
+	            try {
+	              document.getElementById('bulk-' + userGroup.id + '-' + user.nextUser.username).focus();
+	            } catch (e) {}
 	          } },
 	        'Next User'
 	      )

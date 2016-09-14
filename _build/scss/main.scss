@@ -26,6 +26,7 @@ $borderColor:rgb(200,200,200);
 
 .accessibly-hidden {
   @extend %accessibly-hidden;
+  position:absolute !important;
 }
 
 legend {
@@ -147,7 +148,9 @@ button, .button {
     margin-right:.5rem;
     margin-bottom:.5rem;
     &:last-of-type {
-      margin-bottom:0;
+      @include media($mobile) {
+        margin-bottom:0;
+      }
     }
   }
 }
@@ -163,9 +166,16 @@ button, .button {
   }
 }
 
+*[role="button"] {
+  @extend %clickable;
+}
+
 fieldset {
   border:1px solid $borderColor;
-  padding:1em;
+  padding:.5em;
+  @include media($gtMobile) {
+    padding:1em;
+  }
 }
 
 hr {
@@ -258,7 +268,7 @@ $headers:h1,h2,h3,h4,h5,h6;
   }
 }
 
-.settings-grid > section {
+.settings-grid > * {
   > div {
     @extend %bright-padded-module;
   }
@@ -451,6 +461,9 @@ h1 {
 
 table { // .settings-table
     @extend %settings-table;
+    &.no-bulk-actions {
+      margin-bottom:0;
+    }
     .username {
       width:100% !important; //#janky
     }

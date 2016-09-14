@@ -7,6 +7,16 @@ var settings = require('./../model/settings'),
 endpoints = settings.endpoints;
 
 export default class QuickCreateFieldset extends React.Component {
+  componentDidMount() {
+    console.log('componentDidMount', this.refs.quickCreateFieldsetLabel);
+    if(!this.props.quickCreate.updating && document.activeElement !== this.refs.quickCreateFieldsetLabel) {
+      try {
+        this.refs.quickCreateFieldsetLabel.focus();
+      } catch(e) {
+      }
+    }
+    //autoFocus={!props.quickCreate.updating}
+  }
   render() {
 
     var props = this.props;
@@ -37,7 +47,7 @@ export default class QuickCreateFieldset extends React.Component {
                   } else {
                     store.dispatch(actions.quickCreateRoleRemove(group.id,role.id));
                   }
-                }} checked={roleChecked} name={'user-group-' + (group.id) + '-roles[]'} value={group.id + '|' + role.id} />&nbsp;{role.name}
+                }} checked={roleChecked} id={'user-group-' + (group.id) + '-roles[]'} name={'user-group-' + (group.id) + '-roles[]'} value={group.id + '|' + role.id} />&nbsp;{role.name}
             </label>
           );
         });
@@ -65,16 +75,18 @@ export default class QuickCreateFieldset extends React.Component {
     return (
       <div>
       <fieldset>
-            <legend>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</legend>
+            <legend tabIndex="0" role="button" aria-label="Here you can quickly create a user and manage their permissions." ref="quickCreateFieldsetLabel" onClick={(event) => {
+                this.refs.quickCreateUsernameLabel.focus();
+              }}>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</legend>
             <input type="hidden" name="id" value={props.quickCreate.id} />
             <div className="n quick-create-fields field-group">
               <div className="field-username">
-                <label htmlFor="username" id="username-label">Username</label>
+                <label ref="quickCreateUsernameLabel" htmlFor="username" id="username-label">Username</label>
                 <input type="text" autoComplete="off" value={props.quickCreate.username} disabled={props.quickCreate.updating} onChange={(event) => {
                   store.dispatch(actions.updateQuickCreate({
                     username:event.target.value
                   }))
-                }} ref="quickCreateUsername" autoFocus={!props.quickCreate.updating} aria-describedby="username-label" name="username" id="username" className="nickname" aria-required="true"  aria-invalid="false" required />
+                }} ref="quickCreateUsername" aria-describedby="username-label" name="username" id="username" className="nickname" aria-invalid="false" required />
               </div>
               <div className="field-given-name">
                 <label htmlFor="given-name">First Name</label>
@@ -94,7 +106,7 @@ export default class QuickCreateFieldset extends React.Component {
               </div>
               <div className="field-email">
                 <label htmlFor="email">Email</label>
-                <input type="email" value={props.quickCreate.email} autoFocus={props.quickCreate.updating}  onChange={(event) => {
+                <input type="email" value={props.quickCreate.email} onChange={(event) => {
                   store.dispatch(actions.updateQuickCreate({
                     email:event.target.value
                   }))

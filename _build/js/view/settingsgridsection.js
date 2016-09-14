@@ -147,7 +147,7 @@ var SettingsTable = React.createClass({
     });
 
     return (
-      <table className="settings-table">
+      <table className={`settings-table${props.bulkActions ? ' bulk-actions' : ' no-bulk-actions'}`}>
         <thead>
           <tr>
             {bulkTh}
@@ -296,7 +296,9 @@ var SettingsTableRowForm = React.createClass({
       <div><a className="button" href={`#bulk-${userGroup.id}-${user.nextUser.username}`} aria-label={`Escape to Next User ${user.nextUser.username}`} onClick={(event) => {
         console.log(`bulk-${userGroup.id}-${user.username}`);
         props.handleNextBtnClicked();
-        document.getElementById(`bulk-${userGroup.id}-${user.nextUser.username}`).focus();
+        try {
+          document.getElementById(`bulk-${userGroup.id}-${user.nextUser.username}`).focus();
+        } catch (e) {}
       }}>Next User</a></div>
     : false;
 

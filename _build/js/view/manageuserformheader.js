@@ -34,7 +34,7 @@ var CreateSettingsForm = React.createClass({
       }}>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</a>
     );
 
-    const createUserBtn = this.state.quickCreateOpen ? <button>More Options</button> : <a className="button" href={endpoints.ADD_USER}>Create User</a>;
+    const createUserBtn = this.state.quickCreateOpen ? false : <a className="button" href={endpoints.ADD_USER}>Create User</a>; // <button>More Options</button>
 
     const quickCreate = this.state.quickCreateOpen ? (
       <QuickCreateFieldset  {...props} handleDeleteUser={this.handleDeleteUser} />
