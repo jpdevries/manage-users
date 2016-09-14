@@ -10,6 +10,9 @@ $active:rgb(255,0,0); // default link red
 $go:darken(#55AE3D,12%); // MODX green
 $borderColor:rgb(200,200,200);
 
+$red:darken(red,8%);
+$dangerous:$red;
+
 @import "highcontrast";
 
 %bright-padded-module {
@@ -43,6 +46,15 @@ legend {
 
 .oblique {
   font-style:italic;
+}
+
+div[class*="field"] {
+  position:relative;
+}
+
+input[required]:placeholder-shown {
+  border-color: $dangerous;
+  border-style:solid;
 }
 
 .micro-page {
@@ -145,12 +157,14 @@ button, .button {
   flex-wrap:wrap;
   > * {
     flex:1 1 12em;
-    margin-right:.5rem;
     margin-bottom:.5rem;
     &:last-of-type {
       @include media($mobile) {
         margin-bottom:0;
       }
+    }
+    @include media($gtMobile) {
+      margin-right:.5rem;
     }
   }
 }
@@ -168,6 +182,11 @@ button, .button {
 
 *[role="button"] {
   @extend %clickable;
+}
+
+input[type="text"], input[type="password"], input[type="email"] { // , textarea, keygen, select, button, isindex 
+  font-size:1em;
+  line-height:1.4;
 }
 
 fieldset {
@@ -404,6 +423,12 @@ h1 {
 
 .quick-create-fields {
   margin-bottom:1em;
+  > * {
+    margin-bottom:1em;
+    &:last-child {
+      margin-bottom:0;
+    }
+  }
 }
 
 .create-setting-form, .create-user-form {

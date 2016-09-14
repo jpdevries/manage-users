@@ -15,19 +15,19 @@
                 <div class="n quick-create-fields field-group">
                   <div class="field-username">
                     <label for="username" id="username-label">Username</label>
-                    <input type="text" autocomplete="off" aria-describedby="username-label" name="username" id="username" class="nickname" aria-required="true"  aria-invalid="false" required>
+                    <input type="text" autocomplete="off" aria-describedby="username-label" name="username" id="username" class="nickname" aria-required="true"  aria-invalid="false" required placeholder="chucknorris">
                   </div>
                   <div class="field-given-name">
                     <label for="given-name">First Name</label>
-                    <input type="text" name="given-name" id="given-name" class="given-name" />
+                    <input type="text" name="given-name" id="given-name" class="given-name" placeholder="Chuck" />
                   </div>
                   <div class="field-family-name">
                     <label for="family-name">Last Name</label>
-                    <input type="text" name="family-name" id="family-name" class="family-name" />
+                    <input type="text" name="family-name" id="family-name" class="family-name" placeholder="Norris" />
                   </div>
                   <div class="field-email">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="email" aria-required="true"  aria-invalid="false" required />
+                    <input type="email" name="email" id="email" class="email" aria-required="true"  aria-invalid="false" required placeholder="chuck@norris.com" />
                   </div>
                 </div>
                 <div style="margin:1em 0" class="field-group user-group-field user-status-field">
@@ -48,7 +48,7 @@
                 <div class="field-group">
                   <fieldset class="field">
                     <legend>User Permissions</legend>
-                    <p>Users can belong to any number of User Groups. User are assigned Roles that define their priveldges as a member of the User Group. A user can below to the same User Group with multiple&nbsp;roles.</p>
+                    <p>Users can belong to any number of User Groups. Users are assigned Roles that define their priveldges as a member of the User Group. A user can below to the same User Group with multiple&nbsp;roles.</p>
                     <div class="user-group-roles">
                       {% for userGroup in userGroups %}
                         {% set firstGroup = loop.first %}

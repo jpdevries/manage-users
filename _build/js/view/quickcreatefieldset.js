@@ -72,6 +72,12 @@ export default class QuickCreateFieldset extends React.Component {
       </div>
     ) : false;
 
+    function QuickCreateBtn() {
+      return (
+        <button disabled={!(props.quickCreate.email && props.quickCreate.username)} aria-label={`${props.quickCreate.updating ? 'Update' : 'Create'} User${props.quickCreate.username ? ' ' + props.quickCreate.username : ''}`} className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
+      );
+    }
+
     return (
       <div>
       <fieldset>
@@ -86,7 +92,7 @@ export default class QuickCreateFieldset extends React.Component {
                   store.dispatch(actions.updateQuickCreate({
                     username:event.target.value
                   }))
-                }} ref="quickCreateUsername" aria-describedby="username-label" name="username" id="username" className="nickname" aria-invalid="false" required />
+                }} ref="quickCreateUsername" aria-describedby="username-label" name="username" id="username" className="nickname" aria-invalid="false" required placeholder="chucknorris" />
               </div>
               <div className="field-given-name">
                 <label htmlFor="given-name">First Name</label>
@@ -94,7 +100,7 @@ export default class QuickCreateFieldset extends React.Component {
                   store.dispatch(actions.updateQuickCreate({
                     givenName:event.target.value
                   }))
-                }} ref="quickCreateGivenName" name="given-name" id="given-name" className="given-name" />
+                }} ref="quickCreateGivenName" name="given-name" id="given-name" className="given-name" placeholder="Chuck" />
               </div>
               <div className="field-family-name">
                 <label htmlFor="family-name">Last Name</label>
@@ -102,7 +108,7 @@ export default class QuickCreateFieldset extends React.Component {
                   store.dispatch(actions.updateQuickCreate({
                     familyName:event.target.value
                   }))
-                }} ref="quickCreateFamilyName" name="family-name" id="family-name" className="family-name" />
+                }} ref="quickCreateFamilyName" name="family-name" id="family-name" className="family-name" placeholder="Norris" />
               </div>
               <div className="field-email">
                 <label htmlFor="email">Email</label>
@@ -110,7 +116,7 @@ export default class QuickCreateFieldset extends React.Component {
                   store.dispatch(actions.updateQuickCreate({
                     email:event.target.value
                   }))
-                }} ref="quickCreateEmail" name="email" id="email" className="email" aria-required="true"  aria-invalid="false" required />
+                }} ref="quickCreateEmail" name="email" id="email" className="email" aria-required="true"  aria-invalid="false" required placeholder="chuck@norris.com" />
               </div>
             </div>
             <div className="field-group user-group-field user-status-field">
@@ -133,13 +139,13 @@ export default class QuickCreateFieldset extends React.Component {
             </div>
             <div className="button-bar">
               <div className="balanced">
-                <button className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
+                <QuickCreateBtn />
               </div>
             </div>
             <div className="field-group">
               <fieldset className="field">
                 <legend>User Permissions</legend>
-                <p>Users can belong to any number of User Groups. User are assigned Roles that define their priveldges as a member of the User Group. A user can belong to the same User Group with multiple&nbsp;roles.</p>
+                <p>Users can belong to any number of User Groups. Users are assigned Roles that define their priveldges as a member of the User Group. A user can belong to the same User Group with multiple&nbsp;roles.</p>
                 <div className="user-group-roles">
                   {userGroupsMarkup}
                 </div>
@@ -148,7 +154,7 @@ export default class QuickCreateFieldset extends React.Component {
           </fieldset>
           <footer className="balanced">
             <div>
-              <button className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
+              <QuickCreateBtn />
             </div>
             {otherButtons}
           </footer>

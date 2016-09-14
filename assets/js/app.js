@@ -2643,6 +2643,15 @@
 	        )
 	      ) : false;
 
+	      function QuickCreateBtn() {
+	        return React.createElement(
+	          'button',
+	          { disabled: !(props.quickCreate.email && props.quickCreate.username), 'aria-label': (props.quickCreate.updating ? 'Update' : 'Create') + ' User' + (props.quickCreate.username ? ' ' + props.quickCreate.username : ''), className: 'comfortably', type: 'submit' },
+	          props.quickCreate.updating ? 'Update' : 'Create',
+	          ' User'
+	        );
+	      }
+
 	      return React.createElement(
 	        'div',
 	        null,
@@ -2674,7 +2683,7 @@
 	                  store.dispatch(actions.updateQuickCreate({
 	                    username: event.target.value
 	                  }));
-	                }, ref: 'quickCreateUsername', 'aria-describedby': 'username-label', name: 'username', id: 'username', className: 'nickname', 'aria-invalid': 'false', required: true })
+	                }, ref: 'quickCreateUsername', 'aria-describedby': 'username-label', name: 'username', id: 'username', className: 'nickname', 'aria-invalid': 'false', required: true, placeholder: 'chucknorris' })
 	            ),
 	            React.createElement(
 	              'div',
@@ -2688,7 +2697,7 @@
 	                  store.dispatch(actions.updateQuickCreate({
 	                    givenName: event.target.value
 	                  }));
-	                }, ref: 'quickCreateGivenName', name: 'given-name', id: 'given-name', className: 'given-name' })
+	                }, ref: 'quickCreateGivenName', name: 'given-name', id: 'given-name', className: 'given-name', placeholder: 'Chuck' })
 	            ),
 	            React.createElement(
 	              'div',
@@ -2702,7 +2711,7 @@
 	                  store.dispatch(actions.updateQuickCreate({
 	                    familyName: event.target.value
 	                  }));
-	                }, ref: 'quickCreateFamilyName', name: 'family-name', id: 'family-name', className: 'family-name' })
+	                }, ref: 'quickCreateFamilyName', name: 'family-name', id: 'family-name', className: 'family-name', placeholder: 'Norris' })
 	            ),
 	            React.createElement(
 	              'div',
@@ -2716,7 +2725,7 @@
 	                  store.dispatch(actions.updateQuickCreate({
 	                    email: event.target.value
 	                  }));
-	                }, ref: 'quickCreateEmail', name: 'email', id: 'email', className: 'email', 'aria-required': 'true', 'aria-invalid': 'false', required: true })
+	                }, ref: 'quickCreateEmail', name: 'email', id: 'email', className: 'email', 'aria-required': 'true', 'aria-invalid': 'false', required: true, placeholder: 'chuck@norris.com' })
 	            )
 	          ),
 	          React.createElement(
@@ -2757,12 +2766,7 @@
 	            React.createElement(
 	              'div',
 	              { className: 'balanced' },
-	              React.createElement(
-	                'button',
-	                { className: 'comfortably', type: 'submit' },
-	                props.quickCreate.updating ? 'Update' : 'Create',
-	                ' User'
-	              )
+	              React.createElement(QuickCreateBtn, null)
 	            )
 	          ),
 	          React.createElement(
@@ -2779,7 +2783,7 @@
 	              React.createElement(
 	                'p',
 	                null,
-	                'Users can belong to any number of User Groups. User are assigned Roles that define their priveldges as a member of the User Group. A user can belong to the same User Group with multiple roles.'
+	                'Users can belong to any number of User Groups. Users are assigned Roles that define their priveldges as a member of the User Group. A user can belong to the same User Group with multiple roles.'
 	              ),
 	              React.createElement(
 	                'div',
@@ -2795,12 +2799,7 @@
 	          React.createElement(
 	            'div',
 	            null,
-	            React.createElement(
-	              'button',
-	              { className: 'comfortably', type: 'submit' },
-	              props.quickCreate.updating ? 'Update' : 'Create',
-	              ' User'
-	            )
+	            React.createElement(QuickCreateBtn, null)
 	          ),
 	          otherButtons
 	        )
