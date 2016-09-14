@@ -28,6 +28,10 @@ $borderColor:rgb(200,200,200);
   @extend %accessibly-hidden;
 }
 
+legend {
+  position:relative;
+}
+
 .button-bar {
   margin:1em 0;
 }
@@ -143,7 +147,7 @@ button, .button {
     margin-right:.5rem;
     margin-bottom:.5rem;
     &:last-of-type {
-      //margin-right:0;
+      margin-bottom:0;
     }
   }
 }
@@ -161,6 +165,7 @@ button, .button {
 
 fieldset {
   border:1px solid $borderColor;
+  padding:1em;
 }
 
 hr {
@@ -245,6 +250,14 @@ header, aside, .padded {
   }
 }
 
+$headers:h1,h2,h3,h4,h5,h6;
+
+.settings-grid {
+  #{$headers} {
+    position:relative;
+  }
+}
+
 .settings-grid > section {
   > div {
     @extend %bright-padded-module;
@@ -302,6 +315,7 @@ h1 {
     }
     td,th {
         padding:0.2em 0.4em;
+        position:relative;
     }
     thead {
       font-weight:bold;
@@ -378,12 +392,17 @@ h1 {
   padding-right:2em;
 }
 
+.quick-create-fields {
+  margin-bottom:1em;
+}
+
 .create-setting-form, .create-user-form {
   input[type="text"], input[type="email"], input[type="password"], textarea {
     @extend %very-greedy;
   }
   footer {
     text-align:center;
+    margin-top:1em;
     > div {
       //text-align:left;
       //margin:1em 0;

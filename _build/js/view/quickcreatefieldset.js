@@ -62,13 +62,12 @@ export default class QuickCreateFieldset extends React.Component {
       </div>
     ) : false;
 
-    console.log('props.quickCreate.updating',props.quickCreate.updating);
-
     return (
+      <div>
       <fieldset>
             <legend>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</legend>
             <input type="hidden" name="id" value={props.quickCreate.id} />
-            <div className="n field-group">
+            <div className="n quick-create-fields field-group">
               <div className="field-username">
                 <label htmlFor="username" id="username-label">Username</label>
                 <input type="text" autoComplete="off" value={props.quickCreate.username} disabled={props.quickCreate.updating} onChange={(event) => {
@@ -134,13 +133,14 @@ export default class QuickCreateFieldset extends React.Component {
                 </div>
               </fieldset>
             </div>
-            <footer>
-              <div>
-                <button className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
-              </div>
-              {otherButtons}
-            </footer>
           </fieldset>
+          <footer className="balanced">
+            <div>
+              <button className="comfortably" type="submit">{props.quickCreate.updating ? 'Update' : 'Create'} User</button>
+            </div>
+            {otherButtons}
+          </footer>
+        </div>
     );
   }
 }
