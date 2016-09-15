@@ -2102,35 +2102,7 @@
 	      React.createElement(
 	        'div',
 	        { id: 'fold', className: 'settings-grid' },
-	        sections,
-	        React.createElement(
-	          'aside',
-	          { className: 'balanced' },
-	          React.createElement(
-	            'h2',
-	            { id: 'modxambassadors', className: 'accessibly-hidden' },
-	            'Manage User Groups'
-	          ),
-	          React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	              'p',
-	              null,
-	              React.createElement(
-	                'i',
-	                null,
-	                'You’ve been managing users. Perhaps it’s time to ',
-	                React.createElement(
-	                  'a',
-	                  { href: '#' },
-	                  'manage user groups'
-	                ),
-	                '?'
-	              )
-	            )
-	          )
-	        )
+	        sections
 	      )
 	    );
 	  }
