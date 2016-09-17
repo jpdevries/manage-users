@@ -2156,11 +2156,11 @@
 	    var props = this.props;
 	    //console.log(props);
 	    var quickCreateUserBtn = this.state.quickCreateOpen ? false : React.createElement(
-	      'a',
-	      { href: endpoints.ADD_USER, className: 'button', onClick: function onClick(event) {
+	      'button',
+	      { onClick: function onClick(event) {
 	          event.preventDefault();
 	          store.dispatch(actions.updateQuickCreate({ open: true }));
-	        } },
+	        }, 'aria-controls': 'create-setting-form', 'aria-haspopup': 'true', 'aria-expanded': 'false', 'aria-pressed': 'false' },
 	      'Quick ',
 	      props.quickCreate.updating ? 'Update' : 'Create',
 	      ' User'
@@ -2176,7 +2176,7 @@
 
 	    return React.createElement(
 	      'form',
-	      { ref: 'createSettingForm', action: props.quickCreate.updating ? endpoints.UPDATE_USER + props.quickCreate.id : endpoints.ADD_USER, method: 'post', className: 'create-setting-form', onChange: this.updateFormData, onSubmit: function onSubmit(event) {
+	      { id: 'create-setting-form', ref: 'createSettingForm', action: props.quickCreate.updating ? endpoints.UPDATE_USER + props.quickCreate.id : endpoints.ADD_USER, method: 'post', className: 'create-setting-form', onChange: this.updateFormData, onSubmit: function onSubmit(event) {
 	          event.preventDefault();
 	          //console.log('onSubmit',this.state.formMethod,props.quickCreate);
 
@@ -2632,7 +2632,7 @@
 	          null,
 	          React.createElement(
 	            'legend',
-	            { tabIndex: '0', role: 'button', 'aria-label': 'Here you can quickly create a user and manage their permissions.', ref: 'quickCreateFieldsetLabel', onClick: function onClick(event) {
+	            { id: 'quick-create-user-legend', tabIndex: '0', role: 'button', 'aria-label': 'Here you can quickly create a user and manage their permissions.', ref: 'quickCreateFieldsetLabel', onClick: function onClick(event) {
 	                _this2.refs.quickCreateUsernameLabel.focus();
 	              } },
 	            'Quick ',

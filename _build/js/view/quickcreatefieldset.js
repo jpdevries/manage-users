@@ -81,7 +81,7 @@ export default class QuickCreateFieldset extends React.Component {
     return (
       <div>
       <fieldset>
-            <legend tabIndex="0" role="button" aria-label="Here you can quickly create a user and manage their permissions." ref="quickCreateFieldsetLabel" onClick={(event) => {
+            <legend id="quick-create-user-legend" tabIndex="0" role="button" aria-label="Here you can quickly create a user and manage their permissions." ref="quickCreateFieldsetLabel" onClick={(event) => {
                 this.refs.quickCreateUsernameLabel.focus();
               }}>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</legend>
             <input type="hidden" name="id" value={props.quickCreate.id} />

@@ -28,10 +28,10 @@ var CreateSettingsForm = React.createClass({
     const props = this.props;
     //console.log(props);
     const quickCreateUserBtn = this.state.quickCreateOpen ? false : (
-      <a href={endpoints.ADD_USER} className="button" onClick={(event) => {
+      <button onClick={(event) => {
         event.preventDefault();
         store.dispatch(actions.updateQuickCreate({open:true}));
-      }}>Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</a>
+      }} aria-controls="create-setting-form" aria-haspopup="true" aria-expanded="false" aria-pressed="false">Quick {props.quickCreate.updating ? 'Update' : 'Create'} User</button>
     );
 
     const createUserBtn = this.state.quickCreateOpen ? false : <a className="button" href={endpoints.ADD_USER}>Create User</a>; // <button>More Options</button>
@@ -41,7 +41,7 @@ var CreateSettingsForm = React.createClass({
     ) : false;
 
     return(
-      <form ref="createSettingForm" action={props.quickCreate.updating ? endpoints.UPDATE_USER + props.quickCreate.id : endpoints.ADD_USER} method="post" className="create-setting-form" onChange={this.updateFormData} onSubmit={(event) => {
+      <form id="create-setting-form" ref="createSettingForm" action={props.quickCreate.updating ? endpoints.UPDATE_USER + props.quickCreate.id : endpoints.ADD_USER} method="post" className="create-setting-form" onChange={this.updateFormData} onSubmit={(event) => {
         event.preventDefault();
         //console.log('onSubmit',this.state.formMethod,props.quickCreate);
 
