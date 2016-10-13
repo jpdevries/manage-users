@@ -3326,7 +3326,7 @@
 	            null,
 	            React.createElement(
 	              'button',
-	              { type: 'submit', formAction: 'duplicate/user', className: 'save' },
+	              { type: 'submit', formAction: 'duplicate/user', className: 'save', disabled: true },
 	              'Duplicate'
 	            ),
 	            React.createElement(

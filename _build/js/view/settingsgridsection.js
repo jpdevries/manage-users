@@ -358,7 +358,7 @@ var SettingsTableRowForm = React.createClass({
                 <a className="button" href={endpoints.UPDATE_USER + user.id}>Edit</a>
               </div>
               <div>
-                <button type="submit" formAction="duplicate/user" className="save">Duplicate</button>
+                <button type="submit" formAction="duplicate/user" className="save" disabled>Duplicate</button>
                 <button className="delete" type="submit" onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
