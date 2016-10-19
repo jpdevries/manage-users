@@ -92,6 +92,11 @@ Not a single action relies on the mouse. As user rows recieve focus they display
 
 ![](http://j4p.us/0I0M0u2F1U3k/manageusers_keyboard.gif)
 
+## VoiceOver Support
+The interface is entirely screen reader friendly.  
+
+[Watch the VoiceOver preview screencast](https://vimeo.com/182699480).
+
 ## Synchronous Endpoints
 Being progressive in nature, JavaScript is not required to create, update, or remove users. "Old school" synchronous HTML `<form>`s are used along with synchronous endpoints in the Node server to accept and process user input on a new page. As we progressively enhance the front end, we also enhance the Node server to support asynchronous endpoints that serve JSON over XHR&nbsp;requests.
 
